@@ -9,13 +9,14 @@ import { App } from './App';
  */
 test('App should render', () => {
   render(<App />);
-
   expect(screen.getByText('Welcome, party people!')).toBeInTheDocument();
 });
 
 test('Button should render', () => {
   // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  render(<App/>);
+  const newButton = screen.queryByRole('Abutton');
+  expect(newButton).toBeInTheDocument();
 });
 
 /**
@@ -24,7 +25,11 @@ test('Button should render', () => {
  */
 test('theme button should update button text', () => {
   // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  render(<App/>);
+  const newButton = document.querySelector('#Abutton');
+  fireEvent.click(newButton);
+  fireEvent.click(newButton);
+  expect(screen.getByText('Current theme: light')).toBeInTheDocument();
 });
 
 // BONUS
@@ -32,7 +37,10 @@ test('theme button should update button text', () => {
 // e.g.: expect(element).toHaveStyle('color: #FFF');
 test('theme button should toggle styles', () => {
   // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  render(<App/>);
+  const newButton = document.querySelector('#Abutton');
+  fireEvent.click(newButton);
+  expect(screen.getByText('Current theme: dark')).toBeInTheDocument();
 });
 
 /**
@@ -46,7 +54,10 @@ test('theme button should toggle styles', () => {
  */
 test('hidden button should toggle hidden content', () => {
   // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  render(<App/>);
+  const newButton = document.querySelector('#Bbutton')
+  fireEvent.click(newButton);
+  expect(screen.getByText('this content is hidden by default')).toBeInTheDocument();
 });
 
 
